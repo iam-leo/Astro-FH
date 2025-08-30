@@ -1,0 +1,8 @@
+# Ignorar todos los node_modules del repo
+**/node_modules
+
+# Ignorar todas las carpetas de compilación/dist
+**/dist
+
+# Variables de entorno
+**/.env
