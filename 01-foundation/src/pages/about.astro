@@ -1,4 +1,5 @@
 ---
+import CustomTitle from "../components/CustomTitle.astro";
 import MainLayaout from "../Layouts/MainLayaout.astro";
 
 
@@ -6,4 +7,13 @@ import MainLayaout from "../Layouts/MainLayaout.astro";
 
 <MainLayaout title="About page">
 	<h1>About</h1>
+
+	<CustomTitle title="Componente con props" />
 </MainLayaout>
+
+
+<style is:global>
+	h1 {
+		color: rgb(31, 11, 148);
+	}
+</style>
