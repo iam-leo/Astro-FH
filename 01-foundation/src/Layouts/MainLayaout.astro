@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import Navbar from "../components/Navbar.astro";
+import { ClientRouter, ViewTransitions } from "astro:transitions";
 
 const { title } = Astro.props;
 ---
@@ -22,6 +23,12 @@ const { title } = Astro.props;
             content={Astro.generator}
         />
         <title>{title}</title>
+        
+        <!-- NOTE:  Forma vieja de hacer transiciones -->
+        <!-- <ViewTransitions /> -->
+
+        <!-- SOLUTION:  Forma nueva de hacer transiciones -->
+         <ClientRouter />
     </head>
     <body>
         <Navbar />
