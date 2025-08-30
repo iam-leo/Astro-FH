@@ -1,35 +1,25 @@
 ---
-import Navbar from "../components/Navbar.astro";
+import Navbar from '../components/Navbar.astro';
+import MainLayaout from '../Layouts/MainLayaout.astro';
 
 // Server only
 const currentMoment = new Date().toLocaleString();
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<Navbar />
-		<h1>Astro</h1>
+<MainLayaout title="Home page">
+	<h1>Astro</h1>
 
-		<!-- Momento actual que se actualiza solo en modo desarrollo, al buildear queda fijo -->
-		<p> Momento actual: { currentMoment }</p>
+	<!-- Momento actual que se actualiza solo en modo desarrollo, al buildear queda fijo -->
+	<p>Momento actual: {currentMoment}</p>
 
-		<!-- Momento actual que se actualiza en cada request -->
-		<p class="moment-client"></p>
+	<!-- Momento actual que se actualiza en cada request -->
+	<p class='moment-client'></p>
 
-		<script>
-			const currentMomentClient = new Date().toLocaleString();
+	<script>
+		const currentMomentClient = new Date().toLocaleString();
 
-			const p = document.querySelector('.moment-client') as HTMLElement;
+		const p = document.querySelector('.moment-client') as HTMLElement;
 
-			p.textContent = `Momento actual (client): ${currentMomentClient}`;
-		</script>
-
-	</body>
-</html>
+		p.textContent = `Momento actual (client): ${currentMomentClient}`;
+	</script>
+</MainLayaout>
