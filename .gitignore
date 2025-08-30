@@ -6,3 +6,10 @@
 
 # Variables de entorno
 **/.env
+**/.env.*.local
+
+# Cachés de Astro
+**/.astro/
+
+# Config de editor
+**/.vscode/
