@@ -1,6 +1,8 @@
 ---
-	// Server only
-	const currentMoment = new Date().toLocaleString();
+import Navbar from "../components/Navbar.astro";
+
+// Server only
+const currentMoment = new Date().toLocaleString();
 ---
 
 <html lang="en">
@@ -12,6 +14,7 @@
 		<title>Astro</title>
 	</head>
 	<body>
+		<Navbar />
 		<h1>Astro</h1>
 
 		<!-- Momento actual que se actualiza solo en modo desarrollo, al buildear queda fijo -->
