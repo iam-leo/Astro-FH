@@ -1,5 +1,5 @@
 <p align="center" style="width:100%;margin:0;padding:0;">
-  <img src="https://media2.dev.to/dynamic/image/width=1000,height=200,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fntwbi1zq2vxsqbb3hkiy.png" alt="Astro Banner" style="width:100%;max-width:1000px;height:60px;object-fit:cover;display:block;margin:auto;border-radius:8px;" />
+  <img src="https://media2.dev.to/dynamic/image/width=1000,height=200,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fntwbi1zq2vxsqbb3hkiy.png" alt="Astro Banner" style="width:100%;max-width:1000px;height:200px;object-fit:cover;display:block;margin:auto;border-radius:8px;" />
 </p>
 
 <br/>
