@@ -8,14 +8,25 @@ const title = 'Pokedex | Home';
 
 const response = await fetch('https://pokeapi.co/api/v2/pokemon');
 
-const results  = await response.json() as PokemonListResponse;
+const results = (await response.json()) as PokemonListResponse;
 console.log(results);
 ---
 
 <MainLayout title={title}>
-	<h1 class='text-center text-3xl text-indigo-700 mt-5'>Listado de Pokemons</h1>
-	<ul aria-label="Listado de pokemons" class='m-5 grid grid-cols-4 gap-3'>
-		{results.results.map((pokemon) => (
-			<PokemonCard name={pokemon.name} url={pokemon.url} />
-		))}
+	<h1 class='text-center text-3xl text-indigo-700 mt-5'>
+		Listado de Pokemons
+	</h1>
+	<ul
+		aria-label='Listado de pokemons'
+		class='m-5 grid grid-cols-4 gap-3'
+	>
+		{
+			results.results.map((pokemon) => (
+				<PokemonCard
+					name={pokemon.name}
+					url={pokemon.url}
+				/>
+			))
+		}
+	</ul>
 </MainLayout>
