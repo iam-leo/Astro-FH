@@ -1,5 +1,6 @@
 ---
 // Server side only code - build time
+import PokemonCard from '../components/pokemons/PokemonCard.astro';
 import type { PokemonListResponse } from '../interfaces/pokemon-list-results';
 import MainLayout from '../layouts/MainLayout.astro';
 
@@ -13,12 +14,8 @@ console.log(results);
 
 <MainLayout title={title}>
 	<h1 class='text-center text-3xl text-indigo-700 mt-5'>Listado de Pokemons</h1>
-	<ul class='m-5 grid grid-cols-4 gap-3'>
+	<ul aria-label="Listado de pokemons" class='m-5 grid grid-cols-4 gap-3'>
 		{results.results.map((pokemon) => (
-			<li
-				class='bg-slate-800 rounded p-3 text-center capitalize hover:bg-slate-700 hover:scale-105 transition-all'
-			>
-				{pokemon.name}
-			</li>
+			<PokemonCard name={pokemon.name} url={pokemon.url} />
 		))}
 </MainLayout>
