@@ -22,13 +22,6 @@ export const getStaticPaths = ( async () => {
         params: { name: pokemon.name },
         props: { url: pokemon.url },
     }));
-
-    /* return [
-        {
-            params: { name: 'bulbasaur' },
-            props: { url: 'https://pokeapi.co/api/v2/pokemon/1/' },
-        },
-    ]; */
 }) satisfies GetStaticPaths;
 ---
 
@@ -42,6 +35,7 @@ export const getStaticPaths = ( async () => {
             <PokemonCard
                 name={name}
                 url={url}
+                isBig
             />
         </div>
 
