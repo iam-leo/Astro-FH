@@ -15,19 +15,21 @@ const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprit
 <a
     href=`/pokemons/${ name }`
     class:list={[
-        "block bg-slate-800 rounded p-3 text-center capitalize hover:bg-slate-700 hover:scale-105 hover:saturate-150 transition-all'",
+        "block bg-slate-800 rounded p-3 text-center capitalize hover:bg-slate-700 hover:scale-105 transition-all'",
         {
-            'hover:bg-transparent': isBig,
+            'hover:saturate-150': !isBig,
+            'hover:bg-transparent hover:scale-none': isBig,
         },
     ]}
 >
     <img
+        transition:name={`${name}-image`}
         src={imageUrl}
         alt={name}
         class:list={[
             'mx-auto mb-2 saturate-100 size-24',
             {
-                'size-72': isBig,
+                'size-72 saturate-150': isBig,
             },
         ]}
         alt=`Imagen de ${ name }`
