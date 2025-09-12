@@ -39,19 +39,29 @@ const { page } = Astro.props;
     <section class='flex justify-center items-center gap-x-4 my-10 px-5'>
         <a
             href={page.url.prev}
-            class='btn'
+            class:list={[
+                'btn',
+                {
+                    disabled: !page.url.prev,
+                },
+            ]}
         >
             Anteriores
         </a>
         <a
             href={page.url.next}
-            class='btn'
+            class:list={[
+                'btn',
+                {
+                    disabled: !page.url.next,
+                },
+            ]}
         >
             Siguientes</a
         >
 
         <div class='flex flex-1'></div>
-        <span> Página 1 </span>
+        <span> Página {page.currentPage} </span>
     </section>
 </MainLayout>
 
@@ -67,6 +77,10 @@ const { page } = Astro.props;
 
     .disabled {
         @apply bg-gray-500 cursor-not-allowed;
+    }
+
+    .disabled:hover {
+        @apply bg-gray-500;
     }
 
     span {
