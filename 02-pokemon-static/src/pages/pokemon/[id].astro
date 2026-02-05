@@ -1,0 +1,62 @@
+---
+import type { GetStaticPaths } from 'astro';
+import type { PokemonListResponse } from '../../interfaces/pokemon-list-results';
+import MainLayout from '../../layouts/MainLayout.astro';
+import PokemonCard from '../../components/pokemons/PokemonCard.astro';
+
+export const getStaticPaths = (async () => {
+    const resp = await fetch('https://pokeapi.co/api/v2/pokemon?limit=151');
+
+    const { results } = (await resp.json()) as PokemonListResponse;
+
+    return results.map(({ name, url }) => {
+        const id = url.split('/').at(-2);
+
+        return {
+            params: { id: id },
+            props: { name, url },
+        };
+    });
+}) satisfies GetStaticPaths;
+
+const { id } = Astro.params;
+const { name, url } = Astro.props;
+
+const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
+
+const audioUrl = `https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/${id}.ogg`;
+---
+
+<MainLayout title='Hola'>
+    <section class='w-full bg-slate-800 rounded p-3 text-center capitalize m-5'>
+        <h1 class='text-center text-3xl text-indigo-700 mt-5 capitalize'>
+            #{id} - {name}
+        </h1>
+
+        <div class='max-w-xs mx-auto mt-5'>
+            <PokemonCard
+                name={name}
+                url={url}
+                isBig
+            />
+        </div>
+
+        <audio
+            controls
+            class='mx-auto mt-5'
+        >
+            <source
+                src={audioUrl}
+                type='audio/mpeg'
+            />
+            Your browser does not support the audio element.
+        </audio>
+
+        <a
+            href='/'
+            class='text-indigo-700'
+        >
+            Regresar
+        </a>
+    </section>
+</MainLayout>
