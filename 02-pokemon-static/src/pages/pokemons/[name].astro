@@ -12,26 +12,31 @@ const id = url.split('/').at(-2);
 
 const audioUrl = `https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/${id}.ogg`;
 
-export const getStaticPaths = ( async () => {
+const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
 
+export const getStaticPaths = (async () => {
     const resp = await fetch('https://pokeapi.co/api/v2/pokemon?limit=151');
 
-    const { results } = await resp.json() as PokemonListResponse;
+    const { results } = (await resp.json()) as PokemonListResponse;
 
-    return results.map( pokemon => ({
+    return results.map((pokemon) => ({
         params: { name: pokemon.name },
         props: { url: pokemon.url },
     }));
 }) satisfies GetStaticPaths;
 ---
 
-<MainLayout title={`Pokemon ${name}`}>
+<MainLayout
+    title={`Pokemon #${id} ${name}`}
+    description={`Información del Pokémon ${name}`}
+    image={imageUrl}
+>
     <section class='w-full bg-slate-800 rounded p-3 text-center capitalize m-5'>
         <h1 class='text-center text-3xl text-indigo-700 mt-5 capitalize'>
             #{id} - {name}
         </h1>
 
-        <div class="max-w-xs mx-auto mt-5">
+        <div class='max-w-xs mx-auto mt-5'>
             <PokemonCard
                 name={name}
                 url={url}
