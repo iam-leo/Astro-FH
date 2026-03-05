@@ -1,6 +1,7 @@
 ---
 // Server side only code - build time
 import PokemonCard from '@components/pokemons/PokemonCard.astro';
+import Title from '@components/shared/Title.astro';
 import type { PokemonListResponse } from '@interfaces/pokemon-list-results';
 import MainLayout from '@layouts/MainLayout.astro';
 
@@ -12,9 +13,9 @@ const results = (await response.json()) as PokemonListResponse;
 ---
 
 <MainLayout title={title}>
-	<h1 class='text-center text-3xl text-indigo-700 mt-5'>
+	<Title>
 		Listado de Pokemons
-	</h1>
+	</Title>
 	<ul
 		aria-label='Listado de pokemons'
 		class='m-5 grid grid-cols-4 gap-3'

@@ -4,6 +4,7 @@ import type { GetStaticPaths } from 'astro';
 import PokemonCard from '@components/pokemons/PokemonCard.astro';
 import type { PokemonListResponse } from '@interfaces/pokemon-list-results';
 import MainLayout from '@layouts/MainLayout.astro';
+import Title from '@components/shared/Title.astro';
 
 const title = 'Pokedex | Home';
 
@@ -19,9 +20,9 @@ const { page } = Astro.props;
 ---
 
 <MainLayout title={title}>
-    <h1 class='text-center text-3xl text-indigo-700 mt-5'>
-        Listado de Pokemons
-    </h1>
+    <Title>
+        151 Pokemons
+    </Title>
     <ul
         aria-label='Listado de pokemons'
         class='m-5 grid grid-cols-4 gap-3'

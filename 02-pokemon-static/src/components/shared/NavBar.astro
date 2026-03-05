@@ -1,9 +1,11 @@
 ---
- const links = [
-     { name: 'Listado', href: '/' },
-     { name: 'Paginado', href: '/pokemons/1' },
-     { name: 'Favoritos', href: '/favorites' },
- ];
+const links = [
+    { name: 'Listado', href: '/' },
+    { name: 'Paginado', href: '/pokemons/1' },
+    { name: 'Favoritos', href: '/favorites' },
+];
+
+const currentPath = Astro.url.pathname;
 ---
 
 <!-- component -->
@@ -11,14 +13,42 @@
     <div
         class='container flex items-center justify-center p-6 mx-auto text-gray-600 capitalize dark:text-gray-300'
     >
-        {
-            links.map(( { href, name } ) => (
+        <!-- {
+            links.map(({ href, name }) => (
                 <a
-                    href={ href }
-                    class='text-gray-800 dark:text-gray-200 border-b-2 border-blue-500 mx-1.5 sm:mx-6'
+                    href={href}
+                    class:list={[
+                        'text-gray-800 dark:text-gray-200 mx-1.5 sm:mx-6',
+                        {'border-b-2 border-blue-500' : currentPath === href},
+                    ]}
                 >
-                    { name }
+                    {name}
                 </a>
+            ))
+        } -->
+
+        {
+            links.map(({ href, name }) => (
+                <div>
+                    <a
+                        href={href}
+                        class='text-gray-800 dark:text-gray-200 mx-1.5 sm:mx-6'
+                    >
+                        {name}
+                    </a>
+
+                    {
+                        currentPath === href ? (
+                            <div
+                                class='border-b-2 border-blue-500 mx-4'
+                                transition:name="menu-line"
+                            />
+
+                        ) : (
+                            <div class='border-b-2 border-transparent mx-4' />
+                        )
+                    }
+                </div>
             ))
         }
     </div>
