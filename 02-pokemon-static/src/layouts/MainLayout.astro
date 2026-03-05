@@ -2,38 +2,70 @@
 import { ClientRouter } from 'astro:transitions';
 import '../styles/global.css';
 import { siteInfo } from 'src/global/site-info';
+import NavBar from '@components/shared/NavBar.astro';
 
 interface Props {
-    title?: string;
+	title?: string;
 	image?: string;
 	description?: string;
 }
 
-const { title = siteInfo.title, image, description = siteInfo.description } = Astro.props;
+const {
+	title = siteInfo.title,
+	image,
+	description = siteInfo.description,
+} = Astro.props;
 ---
 
-<html lang="es">
+<html lang='es'>
 	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
+		<meta charset='utf-8' />
+		<link
+			rel='icon'
+			type='image/svg+xml'
+			href='/favicon.svg'
+		/>
+		<meta
+			name='viewport'
+			content='width=device-width'
+		/>
+		<meta
+			name='generator'
+			content={Astro.generator}
+		/>
 
 		<!-- SEO -->
-		<meta name="description" content={description} />
-		<meta name="author" content="Leo Ss" />
+		<meta
+			name='description'
+			content={description}
+		/>
+		<meta
+			name='author'
+			content='Leo Ss'
+		/>
 
 		<!-- OG metatags -->
-		<meta property="og:title" content={title} />
-		<meta property="og:description" content={description} />
-		<meta property="og:image" content={image} />
+		<meta
+			property='og:title'
+			content={title}
+		/>
+		<meta
+			property='og:description'
+			content={description}
+		/>
+		<meta
+			property='og:image'
+			content={image}
+		/>
 
-
-		 <!-- Required -->
+		<!-- Required -->
 		<title>{title}</title>
 		<ClientRouter />
 	</head>
-	<body class="bg-slate-950 text-white min-h-screen m-auto max-w-3xl">
-		<slot />
+	<body class='bg-slate-950 text-white min-h-screen'>
+		<NavBar />
+		<main class='mt-10 m-auto max-w-3xl'>
+			<slot />
+		</main>
 	</body>
 </html>
