@@ -86,7 +86,7 @@ export const getStaticPaths = (async () => {
         name: string;
     }
 
-    document.addEventListener('astro:page-load', () => {
+    const handlePageLoad = () => {
         const btnFavorite = document.querySelector('#btn-favorite') as HTMLButtonElement;
 
         if (!btnFavorite) return;
@@ -97,6 +97,9 @@ export const getStaticPaths = (async () => {
         btnFavorite.addEventListener('click', () => {
             console.log({ name, id });
         });
-    });
+    };
+
+    document.addEventListener('astro:page-load', handlePageLoad );
+
 
 </script>
