@@ -4,6 +4,7 @@ import MainLayout from '@layouts/MainLayout.astro';
 import PokemonCard from '@components/pokemons/PokemonCard.astro';
 import type { PokemonListResponse } from '@interfaces/pokemon-list-results';
 import Title from '@components/shared/Title.astro';
+import { Icon } from 'astro-icon/components';
 
 const { name } = Astro.params;
 
@@ -32,10 +33,19 @@ export const getStaticPaths = (async () => {
     description={`Información del Pokémon ${name}`}
     image={imageUrl}
 >
-    <section class='w-full bg-slate-800 rounded p-3 text-center capitalize my-14'>
-        <Title class='capitalize'>
-            #{id} - {name}
-        </Title>
+    <section
+        class='w-full bg-slate-800 rounded p-3 text-center capitalize my-14'
+    >
+        <div class="flex flex-row justify-center items-center gap-x-4">
+            <Title class='capitalize'>
+                #{id} - {name}
+            </Title>
+
+            <button id="btn-favorite" class="cursor-pointer hover:animate-pulse">
+                <Icon name='heart-outline' class="size-14" />
+                <Icon name='heart-full' class="size-14 hidden" />
+            </button>
+        </div>
 
         <div class='max-w-xs mx-auto mt-5'>
             <PokemonCard
