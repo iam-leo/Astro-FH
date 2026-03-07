@@ -41,7 +41,12 @@ export const getStaticPaths = (async () => {
                 #{id} - {name}
             </Title>
 
-            <button id="btn-favorite" class="cursor-pointer hover:animate-pulse">
+            <button
+                data-name={ name }
+                data-id={ id }
+                id="btn-favorite"
+                class="cursor-pointer hover:animate-pulse"
+            >
                 <Icon name='heart-outline' class="size-14" />
                 <Icon name='heart-full' class="size-14 hidden" />
             </button>
@@ -74,3 +79,24 @@ export const getStaticPaths = (async () => {
         </button>
     </section>
 </MainLayout>
+
+<script>
+    interface FavoritePokemon {
+        id: number;
+        name: string;
+    }
+
+    document.addEventListener('astro:page-load', () => {
+        const btnFavorite = document.querySelector('#btn-favorite') as HTMLButtonElement;
+
+        if (!btnFavorite) return;
+
+        const name = btnFavorite.dataset.name;
+        const id = btnFavorite.dataset.id;
+
+        btnFavorite.addEventListener('click', () => {
+            console.log({ name, id });
+        });
+    });
+
+</script>
