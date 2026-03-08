@@ -36,19 +36,27 @@ export const getStaticPaths = (async () => {
     <section
         class='w-full bg-slate-800 rounded p-3 text-center capitalize my-14'
     >
-        <div class="flex flex-row justify-center items-center gap-x-4">
+        <div class='flex flex-row justify-center items-center gap-x-4'>
             <Title class='capitalize'>
                 #{id} - {name}
             </Title>
 
             <button
-                data-name={ name }
-                data-id={ id }
-                id="btn-favorite"
-                class="cursor-pointer hover:animate-pulse"
+                data-name={name}
+                data-id={id}
+                id='btn-favorite'
+                class='cursor-pointer hover:animate-pulse'
             >
-                <Icon name='heart-outline' class="size-14" />
-                <Icon name='heart-full' class="size-14 hidden" />
+                <Icon
+                    data-outline
+                    name='heart-outline'
+                    class='size-14'
+                />
+                <Icon
+                    data-full
+                    name='heart-full'
+                    class='size-14 hidden'
+                />
             </button>
         </div>
 
@@ -87,19 +95,61 @@ export const getStaticPaths = (async () => {
     }
 
     const handlePageLoad = () => {
-        const btnFavorite = document.querySelector('#btn-favorite') as HTMLButtonElement;
+        let favoritesPokemons: FavoritePokemon[] = JSON.parse(
+            localStorage.getItem('favorites') ?? '[]',
+        );
+
+        const btnFavorite = document.querySelector(
+            '#btn-favorite',
+        ) as HTMLButtonElement;
 
         if (!btnFavorite) return;
 
-        const name = btnFavorite.dataset.name;
-        const id = btnFavorite.dataset.id;
+        const name = btnFavorite.dataset.name ?? '';
+        const id = btnFavorite.dataset.id ?? '';
+
+        const heartOutline = btnFavorite.querySelector(
+            '[data-outline]',
+        ) as HTMLElement;
+        const heartFull = btnFavorite.querySelector(
+            '[data-full]',
+        ) as HTMLElement;
+
+        const isFavorite = favoritesPokemons.some(
+            (pokemon) => pokemon.name === name,
+        );
+
+        if (isFavorite) {
+            heartOutline.classList.add('hidden');
+            heartFull.classList.remove('hidden');
+        }
+
+        const toggleFavorite = () => {
+            const isFavorite = favoritesPokemons.some(
+                (pokemon) => pokemon.name === name,
+            );
+
+            if (isFavorite) {
+                favoritesPokemons = favoritesPokemons.filter(
+                    (pokemon) => pokemon.name !== name,
+                );
+            } else {
+                favoritesPokemons.push({ id: +id, name });
+            }
+
+            localStorage.setItem(
+                'favorites',
+                JSON.stringify(favoritesPokemons),
+            );
+        };
 
         btnFavorite.addEventListener('click', () => {
-            console.log({ name, id });
+            heartOutline.classList.toggle('hidden');
+            heartFull.classList.toggle('hidden');
+
+            toggleFavorite();
         });
     };
 
-    document.addEventListener('astro:page-load', handlePageLoad );
-
-
+    document.addEventListener('astro:page-load', handlePageLoad);
 </script>
