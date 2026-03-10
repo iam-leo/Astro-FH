@@ -89,10 +89,7 @@ export const getStaticPaths = (async () => {
 </MainLayout>
 
 <script>
-    interface FavoritePokemon {
-        id: number;
-        name: string;
-    }
+    import type { FavoritePokemon } from '@interfaces/favorite-pokemon';
 
     const handlePageLoad = () => {
         let favoritesPokemons: FavoritePokemon[] = JSON.parse(
