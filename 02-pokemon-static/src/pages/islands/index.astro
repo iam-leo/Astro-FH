@@ -1,0 +1,21 @@
+---
+import { Counter } from '@components/Counter';
+import Title from '@components/shared/Title.astro';
+import MainLayout from '@layouts/MainLayout.astro';
+
+const initialValue = 100;
+---
+
+<MainLayout title='Islands'>
+    <Title> Islands</Title>
+    <p class='text-center mt-3'>Tests con arquitectura de Islands.</p>
+
+    <div class="w-full flex justify-center items-center mt-20">
+        <Counter
+            transition:persist="CounterValue"
+            transition:persist-props
+            client:load
+            initialValue={initialValue}
+        />
+    </div>
+</MainLayout>
